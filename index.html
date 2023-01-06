@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <meta name=”twitter:card” content=”summary“>
+  <meta name=”twitter:site” content=”@_riceham“>
+  <meta property='og:type' content="website">
+  <meta property='og:title' content="Pitch-Controllable Neural Vocoder Demo">
+  <meta property='og:url' content="https://chomeyama.github.io/SiFiGAN-Demo/">
+  <meta property='og:description' content="Project demo page.">
+  <meta property="og:image" content="img/meow.jpg">
+  <meta name="description" content="Pitch-Controllable Neural Vocoder Demo">
+  <title>High-Fidelity and Pitch-Controllable Neural Vocoder Based on Unified Source-Filter Networks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+  <link href="css/style.css" media="all" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="img/me2.ico">
+  <link rel=”canonical” href=”https://chomeyama.github.io/Profile/”>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header class="header">
+      <h2><a href="https://chomeyama.github.io/Profile/">Reo YONEYAMA / Home</a></h2>
+      <nav class="pc-nav">
+        <ul id="nav">
+          <li id="nav"><a href="#abstract">Abstract</a></li>
+          <li id="nav"><a href="#demo">Demo</a></li>
+          <li id="nav"><a href="#citation">Citation</a></li>
+        </ul>
+      </nav>
+      <nav class="sp-nav">
+        <ul id="sp-nav">
+          <li id="sp-nav"><a href="#abstract">Abstract</a></li>
+          <li id="sp-nav"><a href="#demo">Demo</a></li>
+          <li id="sp-nav"><a href="#citation">Citation</a></li>
+          <li class="close"><span>Close</span></li>
+        </ul>
+      </nav>
+      <div id="hamburger">
+        <span></span>
+      </div>
+    </header>
+
+    <div class="main">
+
+      <div class="paper_info">
+        <h1>High-Fidelity and Pitch-Controllable Neural Vocoder Based on Unified Source-Filter Networks</h1>
+        <h2 class="author">Reo Yoneyama<sup>1</sup>, <a href="https://bigpon.github.io/">Yi-Chiao Wu<sup>2</sup></a>,
+          and <a href="https://sites.google.com/site/tomokitoda/">Tomoki Toda<sup>1</sup></a></h2>
+        <h2><sup>1</sup>Nagoya University, Japan, <sup>2</sup>Meta Reality Labs Research, USA</h2>
+        <h2 style="margin-top: 10px;">Submitted to <a href="">IEEE TASLP</a>
+        </h2>
+      </div>
+
+      <h2 class="sectitle">Abstract</h2>
+      <div id="abstract" class="section">
+        <p align="justify">
+          We introduce unified source-filter generative adversarial networks (uSFGAN), a waveform generative model
+          conditioned on acoustic features, which represents the source-filter architecture in a generator network.
+          Unlike the previous neural-based source-filter models in which parametric signal process modules are combined
+          with neural networks, our approach enables unified optimization of both the source excitation generation and
+          resonance filtering parts to achieve higher sound quality. In the uSFGAN framework, several specific
+          regularization losses are proposed to enable the source excitation generation part to output reasonable source
+          excitation signals. Both objective and subjective experiments are conducted, and the results demonstrate that
+          the proposed uSFGAN achieves comparable sound quality to HiFi-GAN in the speech reconstruction task and
+          outperforms WORLD in the F0 transformation task. Moreover, we argue that the F0-driven mechanism and the
+          inductive bias obtained by source-filter modeling improve the robustness against unseen F0 in training as
+          shown by the results of experimental evaluations.
+        </p>
+        <h3 style="text-align: center;">[<a href="">Arxiv</a>]
+          [<a href="https://github.com/chomeyama/HN-UnifiedSourceFilterGAN">Code</a>]
+        </h3>
+      </div>
+
+      <div class="images1">
+        <figure>
+          <img src="figs/previous_models.png" alt="fig1" title="fig1">
+          <figcaption>A comparison of the architectures of conventional and neural vocoders in terms of the
+            source-filter modeling.</figcaption>
+        </figure>
+      </div>
+      <div class="images1">
+        <figure>
+          <img src="figs/usfgan.png" alt="fig2" title="fig2">
+          <figcaption>Overall architecture of proposed uSFGAN.</figcaption>
+        </figure>
+      </div>
+      <div class="images1">
+        <figure>
+          <img src="figs/usfgan_generator.png" alt="fig3" title="fig3">
+          <figcaption> Details of generator architectures. (a) Primary uSFGAN generator. (b) Harmonic-plus-noise uSFGAN
+            generator. (c) QP-PWG macroblock. (d) Periodicity estimator. The red lines and blocks are used only for
+            cascade harmonic-plus-noise source excitation generation. The output layers consist of two pairs of ReLU
+            activation and one-by-one (1 x 1) convolution layers.</figcaption>
+        </figure>
+      </div>
+      <div class="images1">
+        <figure>
+          <img src="figs/mos1x3.png" alt="fig4" title="fig4">
+          <figcaption>Evaluation results of the MOS test. The average scores of all ranges are natural: 4.02, HiFi-GAN:
+            3.88, WORLD: 3.70, QP-PWG: 3.82, uSFGAN: 3.86, C-uSFGAN: 3.97, P-uSFGAN: 3.99, and P-uSFGAN - HiFi-D: 3.92.
+          </figcaption>
+        </figure>
+      </div>
+      <div class="images1">
+        <figure>
+          <img src="figs/obj.png" alt="fig5" title="fig5">
+          <figcaption>Objective evaluation results of F0 transformation for the comparison with baseline models. The MCD
+            values of HN-NSF are excluded because it deviates from the range of the y-axis where the results of the
+            other models are gathered.</figcaption>
+        </figure>
+      </div>
+      <div class="images1">
+        <figure>
+          <img src="figs/obj_abl.png" alt="fig6" title="fig6">
+          <figcaption>Objective evaluation results of F0 transformation for the ablation study.</figcaption>
+        </figure>
+      </div>
+      <div class="images1">
+        <figure>
+          <img src="figs/pref.png" alt="fig7" title="fig7">
+          <figcaption>Evaluation results of the preference test for F0 transformation with the baseline WORLD and
+            proposed C-uSFGAN and P-uSFGAN</figcaption>
+        </figure>
+      </div>
+      <div class="images1">
+        <figure>
+          <img src="figs/c-p-usfgan-hn.png" alt="fig8" title="fig8">
+          <figcaption>Plots of output source excitation signals and spectrograms of C-uSFGAN (upper row) and P-uSFGAN
+            (lower row) for 500 [ms]. The left column indicates the final source excitation signal, the middle column
+            indicates the periodic source excitation signal, and the right column indicates the aperiodic source
+            excitation signal.</figcaption>
+        </figure>
+      </div>
+      <div class="images1">
+        <figure>
+          <img src="figs/waveforms-f0.png" alt="fig9" title="fig9">
+          <figcaption>Plots of output source excitation signals of uSFGAN, C-uSFGAN, and P-uSFGAN (from
+            top to bottom row) with three F0 scaling factors: 0.5, 1.0, and 2.0 (left to right column), for 50 [ms]. All
+            of them were clipped from the same segment of the same utterance. In this segment, the original F0 values
+            were around 140 [Hz].</figcaption>
+        </figure>
+      </div>
+      <div class="images1">
+        <figure>
+          <img src="figs/obj_abl2.png" alt="fig10" title="fig10">
+          <figcaption>Objective evaluation results of F0 transformation for the ablation study on auxiliary features.
+          </figcaption>
+        </figure>
+      </div>
+      <div class="images1">
+        <figure>
+          <img src="figs/table1.png" alt="table1" title="table1">
+          <figcaption>Number of model parameters and inference speed on a single TITAN RTX 3090 GPU.
+          </figcaption>
+        </figure>
+      </div>
+      <div class="images1">
+        <figure>
+          <img src="figs/table2.png" alt="table2" title="table2">
+          <figcaption>Results of objective evaluations of speech reconstruction. The best scores are in bold.
+          </figcaption>
+        </figure>
+      </div>
+
+      <h2 class="sectitle">Demo</h2>
+      <div id="demo" class="section">
+        <p>
+          Only VCTK [1] dataset is used for the training. We limited the F0 range of the training data from 70 Hz to 340
+          Hz to evaluate robustness to unseen F0 values. The default auxiliary features used for conditioning are
+          mel-generalized cepstrum (MGC) and mel-cepstral aperiodicity (MAP) extracted using WORLD [2].
+          All provided samples are randomly chosen.<br>
+
+          <b>Baselines</b>
+        <ul>
+          <li>HiFi-GAN : The vanilla HiFi-GAN (V1) [3] conditioned on mel-spectrogram.</li>
+          <li>WORLD : A conventional source-filter vocoder [2].</li>
+          <li>QP-PWG : Quasi-periodic prallel waveGAN [4]. Please check the <a
+              href="https://bigpon.github.io/QuasiPeriodicParallelWaveGAN_demo/">official demo</a> for more information.
+          </li>
+        </ul>
+
+        <b>Proposed models</b>
+        <ul>
+          <li>uSFGAN : Basic unified source-filter GAN [5].</li>
+          <li>C-uSFGAN : Cascade harmonic-plus-noise uSFGAN .
+          </li>
+          <li>P-uSFGAN : Parallel harmonic-plus-noise uSFGAN modified from [6].
+        </ul>
+
+        <b>Ablation models</b>
+        <ul>
+          <li>P-uSFGAN - Reg-loss : P-uSFGAN trained with the spectral envelope flattening loss [5] instead of the
+            residual
+            spectra targeting loss [6].
+          <li>P-uSFGAN - HN-SN: P-uSFGAN without the parallel harmonic-plusnoise source network but with the generator
+            of the basic uSFGAN.
+          <li>P-uSFGAN - HiFi-D: P-uSFGAN without the multi-period or multiscale discriminator of HiFi-GAN but with the
+            discriminator of parallel waveGAN [7].
+          <li>P-uSFGAN - Mel-loss : P-uSFGAN trained with the multi-resolution STFT loss [7] instead of the
+            mel-spectral L1 loss.
+          <li>P-uSFGAN w/ MEL: P-uSFGAN conditioned on mel-spectrogram instead of WORLD features.
+          <li>P-uSFGAN w/ F0: P-uSFGAN conditioned on F0 in addition to the default set of the auxiliary features.
+          <li>P-uSFGAN w/ BAP: P-uSFGAN conditioned on band-aperiodicity (BAP) instead of MAP.
+        </ul>
+        <br>
+        </p>
+
+        <div class="selects">
+          <label for="utt_id">Utterance ID</label>
+          <div class="simple_select">
+            <select required id="utt_id" name="utt_id">
+              <option value="p229_012" selected>p229_012</option>
+              <option value="p271_051">p271_051</option>
+              <option value="p300_004">p300_004</option>
+              <option value="p311_018">p311_018</option>
+              <option value="p360_281">p360_281</option>
+              <option value="p248_003">p248_003</option>
+              <option value="p281_275">p281_275</option>
+              <option value="p307_127">p307_127</option>
+              <option value="p323_076">p323_076</option>
+              <option value="p376_412">p376_412</option>
+            </select>
+          </div>
+
+          <div class="button">
+            <input type="button" value="OK" onclick="clickBtn()">
+          </div>
+        </div>
+
+        <script>
+          function clickBtn() {
+            var utt_id = document.getElementById('utt_id');
+            utt_id.options[utt_id.selectedIndex].selected = true;
+            document.getElementById("natural_f1.00").src = "audio/" + "natural" + "/" + utt_id.value + "_f1.00.wav";
+            document.getElementById("hifigan_f1.00").src = "audio/" + "natural" + "/" + utt_id.value + "_f1.00.wav";
+            const methods = ["world", "qppwg", "usfgan", "csfgan", "psfgan", "psfgan.reg", "psfgan.hnsn", "psfgan.mr", "psfgan.mel", "psfgan.bap", "psfgan.f0", "psfgan.hifid"];
+            const f0_factors = ["_f0.25", "_f0.50", "_f0.59", "_f0.71", "_f0.84", "_f1.00", "_f1.19", "_f1.41", "_f1.68", "_f2.00", "_f4.00"];
+            for (const m of methods) {
+              for (const f of f0_factors) {
+                document.getElementById(m + f).src = "audio/" + m + "/" + utt_id.value + f + ".wav";
+              }
+            }
+          }
+        </script>
+
+        <table class="audio_table">
+          <thead>
+            <tr>
+              <th style="text-align: center" class="td_fixed">Model</th>
+              <th style="text-align: center">Copy Synthesis</th>
+              <th style="text-align: center">F<sub>0</sub> x 2<sup>-2.0</sup></th>
+              <th style="text-align: center">F<sub>0</sub> x 2<sup>-1.0</sup></th>
+              <th style="text-align: center">F<sub>0</sub> x 2<sup>-0.75</sup></th>
+              <th style="text-align: center">F<sub>0</sub> x 2<sup>-0.5</sup></th>
+              <th style="text-align: center">F<sub>0</sub> x 2<sup>-0.25</sup></th>
+              <th style="text-align: center">F<sub>0</sub> x 2<sup>0.25</sup></th>
+              <th style="text-align: center">F<sub>0</sub> x 2<sup>0.5</sup></th>
+              <th style="text-align: center">F<sub>0</sub> x 2<sup>0.75</sup></th>
+              <th style="text-align: center">F<sub>0</sub> x 2<sup>1.0</sup></th>
+              <th style="text-align: center">F<sub>0</sub> x 2<sup>2.0</sup></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align: left" class="td_fixed">Natural</td>
+              <td style="text-align: center"><audio id="natural_f1.00" src="audio/natural/p229_012_f1.00.wav"
+                  controls="" preload=""></audio>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left" class="td_fixed">HiFi-GAN</td>
+              <td style="text-align: center"><audio id="hifigan_f1.00" src="audio/hifigan/p229_012_f1.00.wav"
+                  controls="" preload=""></audio>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              <td style="text-align: center"><audio src="" preload=""></audio></td>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left" class="td_fixed">WORLD</td>
+              <td style="text-align: center"><audio id="world_f1.00" src="audio/world/p229_012_f1.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="world_f0.25" src="audio/world/p229_012_f0.25.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="world_f0.50" src="audio/world/p229_012_f0.50.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="world_f0.59" src="audio/world/p229_012_f0.59.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="world_f0.71" src="audio/world/p229_012_f0.71.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="world_f0.84" src="audio/world/p229_012_f0.84.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="world_f1.19" src="audio/world/p229_012_f1.19.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="world_f1.41" src="audio/world/p229_012_f1.41.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="world_f1.68" src="audio/world/p229_012_f1.68.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="world_f2.00" src="audio/world/p229_012_f2.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="world_f4.00" src="audio/world/p229_012_f4.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left" class="td_fixed">QP-PWG</td>
+              <td style="text-align: center"><audio id="qppwg_f1.00" src="audio/qppwg/p229_012_f1.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="qppwg_f0.25" src="audio/qppwg/p229_012_f0.25.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="qppwg_f0.50" src="audio/qppwg/p229_012_f0.50.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="qppwg_f0.59" src="audio/qppwg/p229_012_f0.59.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="qppwg_f0.71" src="audio/qppwg/p229_012_f0.71.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="qppwg_f0.84" src="audio/qppwg/p229_012_f0.84.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="qppwg_f1.19" src="audio/qppwg/p229_012_f1.19.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="qppwg_f1.41" src="audio/qppwg/p229_012_f1.41.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="qppwg_f1.68" src="audio/qppwg/p229_012_f1.68.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="qppwg_f2.00" src="audio/qppwg/p229_012_f2.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="qppwg_f4.00" src="audio/qppwg/p229_012_f4.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left" class="td_fixed">uSFGAN</td>
+              <td style="text-align: center"><audio id="usfgan_f1.00" src="audio/usfgan/p229_012_f1.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="usfgan_f0.25" src="audio/usfgan/p229_012_f0.25.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="usfgan_f0.50" src="audio/usfgan/p229_012_f0.50.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="usfgan_f0.59" src="audio/usfgan/p229_012_f0.59.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="usfgan_f0.71" src="audio/usfgan/p229_012_f0.71.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="usfgan_f0.84" src="audio/usfgan/p229_012_f0.84.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="usfgan_f1.19" src="audio/usfgan/p229_012_f1.19.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="usfgan_f1.41" src="audio/usfgan/p229_012_f1.41.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="usfgan_f1.68" src="audio/usfgan/p229_012_f1.68.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="usfgan_f2.00" src="audio/usfgan/p229_012_f2.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="usfgan_f4.00" src="audio/usfgan/p229_012_f4.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left" class="td_fixed">C-uSFGAN</td>
+              <td style="text-align: center"><audio id="csfgan_f1.00" src="audio/csfgan/p229_012_f1.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="csfgan_f0.25" src="audio/csfgan/p229_012_f0.25.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="csfgan_f0.50" src="audio/csfgan/p229_012_f0.50.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="csfgan_f0.59" src="audio/csfgan/p229_012_f0.59.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="csfgan_f0.71" src="audio/csfgan/p229_012_f0.71.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="csfgan_f0.84" src="audio/csfgan/p229_012_f0.84.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="csfgan_f1.19" src="audio/csfgan/p229_012_f1.19.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="csfgan_f1.41" src="audio/csfgan/p229_012_f1.41.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="csfgan_f1.68" src="audio/csfgan/p229_012_f1.68.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="csfgan_f2.00" src="audio/csfgan/p229_012_f2.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="csfgan_f4.00" src="audio/csfgan/p229_012_f4.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left" class="td_fixed">P-uSFGAN</td>
+              <td style="text-align: center"><audio id="psfgan_f1.00" src="audio/psfgan/p229_012_f1.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan_f0.25" src="audio/psfgan/p229_012_f0.25.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan_f0.50" src="audio/psfgan/p229_012_f0.50.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan_f0.59" src="audio/psfgan/p229_012_f0.59.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan_f0.71" src="audio/psfgan/p229_012_f0.71.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan_f0.84" src="audio/psfgan/p229_012_f0.84.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan_f1.19" src="audio/psfgan/p229_012_f1.19.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan_f1.41" src="audio/psfgan/p229_012_f1.41.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan_f1.68" src="audio/psfgan/p229_012_f1.68.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan_f2.00" src="audio/psfgan/p229_012_f2.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan_f4.00" src="audio/psfgan/p229_012_f4.00.wav" controls=""
+                  preload=""></audio>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left" class="td_fixed">P-uSFGAN <br> - Reg-loss</td>
+              <td style="text-align: center"><audio id="psfgan.reg_f1.00" src="audio/psfgan.reg/p229_012_f1.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.reg_f0.25" src="audio/psfgan.reg/p229_012_f0.25.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.reg_f0.50" src="audio/psfgan.reg/p229_012_f0.50.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.reg_f0.59" src="audio/psfgan.reg/p229_012_f0.59.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.reg_f0.71" src="audio/psfgan.reg/p229_012_f0.71.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.reg_f0.84" src="audio/psfgan.reg/p229_012_f0.84.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.reg_f1.19" src="audio/psfgan.reg/p229_012_f1.19.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.reg_f1.41" src="audio/psfgan.reg/p229_012_f1.41.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.reg_f1.68" src="audio/psfgan.reg/p229_012_f1.68.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.reg_f2.00" src="audio/psfgan.reg/p229_012_f2.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.reg_f4.00" src="audio/psfgan.reg/p229_012_f4.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left" class="td_fixed">P-uSFGAN <br> - HN-SN</td>
+              <td style="text-align: center"><audio id="psfgan.hnsn_f1.00" src="audio/psfgan.hnsn/p229_012_f1.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hnsn_f0.25" src="audio/psfgan.hnsn/p229_012_f0.25.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hnsn_f0.50" src="audio/psfgan.hnsn/p229_012_f0.50.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hnsn_f0.59" src="audio/psfgan.hnsn/p229_012_f0.59.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hnsn_f0.71" src="audio/psfgan.hnsn/p229_012_f0.71.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hnsn_f0.84" src="audio/psfgan.hnsn/p229_012_f0.84.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hnsn_f1.19" src="audio/psfgan.hnsn/p229_012_f1.19.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hnsn_f1.41" src="audio/psfgan.hnsn/p229_012_f1.41.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hnsn_f1.68" src="audio/psfgan.hnsn/p229_012_f1.68.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hnsn_f2.00" src="audio/psfgan.hnsn/p229_012_f2.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hnsn_f4.00" src="audio/psfgan.hnsn/p229_012_f4.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left" class="td_fixed">P-uSFGAN <br> - HiFi-D</td>
+              <td style="text-align: center"><audio id="psfgan.hifid_f1.00" src="audio/psfgan.hifid/p229_012_f1.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hifid_f0.25" src="audio/psfgan.hifid/p229_012_f0.25.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hifid_f0.50" src="audio/psfgan.hifid/p229_012_f0.50.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hifid_f0.59" src="audio/psfgan.hifid/p229_012_f0.59.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hifid_f0.71" src="audio/psfgan.hifid/p229_012_f0.71.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hifid_f0.84" src="audio/psfgan.hifid/p229_012_f0.84.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hifid_f1.19" src="audio/psfgan.hifid/p229_012_f1.19.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hifid_f1.41" src="audio/psfgan.hifid/p229_012_f1.41.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hifid_f1.68" src="audio/psfgan.hifid/p229_012_f1.68.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hifid_f2.00" src="audio/psfgan.hifid/p229_012_f2.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.hifid_f4.00" src="audio/psfgan.hifid/p229_012_f4.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left" class="td_fixed">P-uSFGAN <br> - Mel-loss</td>
+              <td style="text-align: center"><audio id="psfgan.mr_f1.00" src="audio/psfgan.mr/p229_012_f1.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mr_f0.25" src="audio/psfgan.mr/p229_012_f0.25.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mr_f0.50" src="audio/psfgan.mr/p229_012_f0.50.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mr_f0.59" src="audio/psfgan.mr/p229_012_f0.59.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mr_f0.71" src="audio/psfgan.mr/p229_012_f0.71.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mr_f0.84" src="audio/psfgan.mr/p229_012_f0.84.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mr_f1.19" src="audio/psfgan.mr/p229_012_f1.19.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mr_f1.41" src="audio/psfgan.mr/p229_012_f1.41.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mr_f1.68" src="audio/psfgan.mr/p229_012_f1.68.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mr_f2.00" src="audio/psfgan.mr/p229_012_f2.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mr_f4.00" src="audio/psfgan.mr/p229_012_f4.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left" class="td_fixed">P-uSFGAN <br> w/ MEL</td>
+              <td style="text-align: center"><audio id="psfgan.mel_f1.00" src="audio/psfgan.mel/p229_012_f1.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mel_f0.25" src="audio/psfgan.mel/p229_012_f0.25.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mel_f0.50" src="audio/psfgan.mel/p229_012_f0.50.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mel_f0.59" src="audio/psfgan.mel/p229_012_f0.59.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mel_f0.71" src="audio/psfgan.mel/p229_012_f0.71.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mel_f0.84" src="audio/psfgan.mel/p229_012_f0.84.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mel_f1.19" src="audio/psfgan.mel/p229_012_f1.19.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mel_f1.41" src="audio/psfgan.mel/p229_012_f1.41.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mel_f1.68" src="audio/psfgan.mel/p229_012_f1.68.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mel_f2.00" src="audio/psfgan.mel/p229_012_f2.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.mel_f4.00" src="audio/psfgan.mel/p229_012_f4.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left" class="td_fixed">P-uSFGAN <br> w/ F0</td>
+              <td style="text-align: center"><audio id="psfgan.f0_f1.00" src="audio/psfgan.f0/p229_012_f1.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.f0_f0.25" src="audio/psfgan.f0/p229_012_f0.25.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.f0_f0.50" src="audio/psfgan.f0/p229_012_f0.50.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.f0_f0.59" src="audio/psfgan.f0/p229_012_f0.59.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.f0_f0.71" src="audio/psfgan.f0/p229_012_f0.71.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.f0_f0.84" src="audio/psfgan.f0/p229_012_f0.84.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.f0_f1.19" src="audio/psfgan.f0/p229_012_f1.19.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.f0_f1.41" src="audio/psfgan.f0/p229_012_f1.41.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.f0_f1.68" src="audio/psfgan.f0/p229_012_f1.68.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.f0_f2.00" src="audio/psfgan.f0/p229_012_f2.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.f0_f4.00" src="audio/psfgan.f0/p229_012_f4.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: left" class="td_fixed">P-uSFGAN <br> w/ BAP</td>
+              <td style="text-align: center"><audio id="psfgan.bap_f1.00" src="audio/psfgan.bap/p229_012_f1.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.bap_f0.25" src="audio/psfgan.bap/p229_012_f0.25.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.bap_f0.50" src="audio/psfgan.bap/p229_012_f0.50.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.bap_f0.59" src="audio/psfgan.bap/p229_012_f0.59.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.bap_f0.71" src="audio/psfgan.bap/p229_012_f0.71.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.bap_f0.84" src="audio/psfgan.bap/p229_012_f0.84.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.bap_f1.19" src="audio/psfgan.bap/p229_012_f1.19.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.bap_f1.41" src="audio/psfgan.bap/p229_012_f1.41.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.bap_f1.68" src="audio/psfgan.bap/p229_012_f1.68.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.bap_f2.00" src="audio/psfgan.bap/p229_012_f2.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+              <td style="text-align: center"><audio id="psfgan.bap_f4.00" src="audio/psfgan.bap/p229_012_f4.00.wav"
+                  controls="" preload=""></audio>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="sectitle">Citation</h2>
+      <div id="citation" class="section">
+        <p>
+        </p>
+      </div>
+
+      <h2 class="sectitle">References</h2>
+      <div id="references" class="section">
+        <p>[1] J. Yamagishi, C. Veaux, and K. MacDonald, “CSTR VCTK Corpus: English Multi-speaker Corpus for CSTR Voice
+          Cloning Toolkit,” 2019.</p>
+        <p>[2] M. Morise, F. Yokomori, and K. Ozawa, “WORLD: a vocoderbased high-quality speech synthesis system for
+          real-time applications,” IEICE Transactions on Information and Systems, vol. 99, no. 7, pp. 1877-1884, 2016.
+        </p>
+        <p>[3] J. Kong, J. Kim, and J. Bae, “HiFi-GAN: Generative Adversarial Networks for Efficient and High Fidelity
+          Speech Synthesis,” in Proc. NeurIPS, 2020, vol. 33, pp. 17022-17033.</p>
+        <p>[4] Y.-C. Wu, T. Hayashi, T. Okamoto, H. Kawai, and T. Toda, “QuasiPeriodic Parallel WaveGAN: A
+          Non-Autoregressive Raw Waveform Generative Model With PitchDependent Dilated Convolution Neural Network,”
+          IEEE/ACM TASLP, vol. 29, pp. 792-806, 2021.</p>
+        <p>[5] R. Yoneyama, Y.-C. Wu, and T. Toda, “Unified SourceFilter GAN with Harmonic-plus-Noise Source Excitation
+          Generation,” in Proc. Interspeech, 2022, pp. 848-852.</p>
+        <p>[6] R. Yoneyama, Y.-C. Wu, and T. Toda, “Unified Source-Filter GAN with Harmonic-plus-Noise Source
+          Excitation Generation,” in Proc. Interspeech, 2022, pp. 848–852.</p>
+        <p>[7] R. Yamamoto, E. Song, and J.-M. Kim, “Parallel Wavegan: A Fast Waveform Generation Model Based on
+          Generative Adversarial Networks with Multi-Resolution Spectrogram,” in Proc. ICASSP, 2020, pp. 6199-6203.</p>
+      </div>
+
+    </div>
+
+    <div class="page-top" id="js-page-top">
+      <span class="material-icons-outlined">expand_less</span>
+    </div>
+
+    <footer>
+      <a class="copyright">Copyright&copy;2022.</a>
+      <a href="https://github.com/chomeyama/" target="_blank">
+        <img class="icon" src="img/github_icon.png" alt="GitHub icon">
+      </a>
+      <a href="https://twitter.com/_riceham/" target="_blank">
+        <img class="icon" src="img/twitter_icon.png" alt="Twitter icon">
+      </a>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type='text/javascript' src="js/script.js"></script>
+</body>
+
+</html>
